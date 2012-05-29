@@ -106,7 +106,7 @@ class servoGroup:
 class App:
 
     def __init__(self, master):
-        self.con = servitorComm.Controller() # Servo controller
+        self.con = servotorComm.Controller() # Servo controller
         self.hexy = hexapod(self.con)
         self.master = master
 
@@ -161,7 +161,7 @@ class App:
         counter = 0
         for move_name in dir(self):
             if "move_" in move_name:
-                b = Button(self.frame, text=move_name[5:], command = lambda func=getattr(self, "move_"+move_name[5:]): servitorComm.runMovement(func))
+                b = Button(self.frame, text=move_name[5:], command = lambda func=getattr(self, "move_"+move_name[5:]): servotorComm.runMovement(func))
                 b.grid(row=counter+8, column=0)
                 #b.pack()
                 counter += 1
@@ -213,7 +213,7 @@ class App:
         self.servos.append(servoGroup(self.frame,self.con,servoNum,colX=coords[0],rowY=coords[1]))
 
     def gui_estop(self):
-        servitorComm.runMovement(self.estop)
+        servotorComm.runMovement(self.estop)
 
     def loadOffsets(self):
         # If there is one offset file in the folder, automatically load it
