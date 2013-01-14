@@ -81,7 +81,11 @@ class leg():
     def setHipDeg_function(self,endHipAngle,stepTime):
         currentHipAngle = self.con.servos[self.hipServoNum].getPosDeg()
         hipMaxDiff = endHipAngle-currentHipAngle
+		
+        self.con.servos[self.hipServoNum].setPos(deg=endHipAngle)
+        time.sleep(stepTime)
 
+        '''
         steps = range(int(stepPerS))
         for i,t in enumerate(steps):
             # TODO: implement time-movements the servo commands sent for far fewer
@@ -96,6 +100,7 @@ class leg():
 
             #wait for next cycle
             time.sleep(stepTime/float(stepPerS))
+        '''
 
     def setFootY_function(self,footY,stepTime):
         # TODO: max steptime dependent
