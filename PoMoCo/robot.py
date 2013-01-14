@@ -117,7 +117,18 @@ class leg():
         currentHipAngle = self.con.servos[self.hipServoNum].getPosDeg()
 
         hipMaxDiff = endHipAngle-currentHipAngle
+		
+        # Raise boot to max
+        self.setFootY(0,stepTime=0)
+        # Rotate hip
+        self.con.servos[self.hipServoNum].setPos(deg=endHipAngle)
+        # sleep a bit to adhere to steptime param
+        time.sleep(stepTime/2)
+        # Lower foot to floor
+        self.setFootY(floor,stepTime=0)
 
+			
+        '''
         steps = range(int(stepPerS))
         for i,t in enumerate(steps):
 
@@ -147,3 +158,4 @@ class leg():
 
             #wait for next cycle
             time.sleep(stepTime/float(stepPerS))
+        '''
