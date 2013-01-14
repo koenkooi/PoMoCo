@@ -75,8 +75,8 @@ class leg():
     def setFootY(self,footY,stepTime=1):
         runMovement(self.setFootY_function,footY,stepTime)
 
-    def replantFoot(self,endHipAngle,stepTime=1):
-        runMovement(self.replantFoot_function,endHipAngle,stepTime)
+    def replantFoot(self,endHipAngle,stepTime=1, height=60):
+        runMovement(self.replantFoot_function,endHipAngle,stepTime, height)
 
     def setHipDeg_function(self,endHipAngle,stepTime):
         currentHipAngle = self.con.servos[self.hipServoNum].getPosDeg()
@@ -114,7 +114,7 @@ class leg():
             self.con.servos[self.kneeServoNum].setPos(deg=kneeAngle)
             self.con.servos[self.ankleServoNum].setPos(deg=-ankleAngle)
 
-    def replantFoot_function(self,endHipAngle,stepTime):
+    def replantFoot_function(self,endHipAngle,stepTime, height):
     # Smoothly moves a foot from one position on the ground to another in time seconds
     # TODO: implement time-movements the servo commands sent for far fewer total servo
     #       commands
@@ -129,8 +129,8 @@ class leg():
         self.con.servos[self.hipServoNum].setPos(deg=endHipAngle)
         # sleep a bit to adhere to steptime param
         time.sleep(stepTime/2)
-        # Lower foot to floor
-        self.setFootY(floor,stepTime=0)
+        # Lower foot to height
+        self.setFootY(height,stepTime=0)
 
 			
         '''
