@@ -7,7 +7,7 @@ hexy.neck.set(deg)
 
 # re-plant tripod1 deg degrees forward
 for leg in hexy.tripod1:
-    leg.replantFoot(deg,stepTime=0.2)
+    leg.replantFoot(deg,stepTime=0.1)
 time.sleep(0.5)
 
 # raise tripod2 feet in place as tripod1 rotate and neck
@@ -17,7 +17,7 @@ time.sleep(0.3)
 
 # swing tripod1 feet back 2*deg degrees (to -deg)
 for leg in hexy.tripod1:
-    leg.setHipDeg(-deg,stepTime=0.3)
+    leg.setHipDeg(-deg,stepTime=0.1)
 
 # reset neck as body turns
 hexy.neck.set(0)
@@ -29,9 +29,9 @@ for leg in hexy.tripod2:
 time.sleep(0.3)
 
 # re-plant legsto starting position
-hexy.RF.replantFoot(deg,stepTime=0.3)
-hexy.LM.replantFoot(1,stepTime=0.3)
-hexy.RB.replantFoot(-deg,stepTime=0.3)
+hexy.RF.replantFoot(deg,stepTime=0.1)
+hexy.LM.replantFoot(1,stepTime=0.1)
+hexy.RB.replantFoot(-deg,stepTime=0.1)
 
 time.sleep(0.3)
 
